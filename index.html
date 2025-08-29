@@ -3,20 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-Do List</title>
     <link rel="stylesheet" href="styles.css">
-    <title>To Do List</title>
 </head>
 <body>
-    <div class="header">
-        <h1>To Do List</h1>
+    <div class="container">
+        <div class="header">
+            <h1>📝 My To-Do List</h1>
+            <p>Stay organized and get things done!</p>
+        </div>
+
+        <div class="add-task-section">
+            <input 
+                type="text" 
+                class="task-input" 
+                id="taskInput" 
+                placeholder="What needs to be done today?"
+                autocomplete="off"
+            >
+            <button class="add-btn" id="addBtn">Add Task</button>
+        </div>
+
+        <div class="task-list" id="taskList">
+            <div class="empty-state" id="emptyState">
+                <p>✨ No tasks yet! Add one above to get started.</p>
+            </div>
+        </div>
+
+        <div class="task-counter" id="taskCounter" style="display: none;">
+            Total: <span id="totalTasks">0</span> | 
+            Pending: <span id="pendingTasks">0</span> | 
+            In Progress: <span id="inProgressTasks">0</span> | 
+            Completed: <span id="completedTasks">0</span>
+        </div>
     </div>
-
-    <div class="btn">
-        <input type="button" value="Add Task">
-    </div>
-
-    <div class="list"></div>
-
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
