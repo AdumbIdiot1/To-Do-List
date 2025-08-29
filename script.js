@@ -20,6 +20,7 @@ const TaskManager = {
         if (!text) {
             taskInput.style.borderColor = '#ff4757';
             setTimeout(() => taskInput.style.borderColor = '#e0e0e0', 1000);
+            alert('Please enter a task description!');
             return;
         }
         const newTask = {id: ++this.taskIdCounter, text: text, status: 'pending', createdAt: new Date()};
@@ -48,10 +49,14 @@ const TaskManager = {
         this.render();
     },
     saveTasks() {
+        localStorage.setItem('tasks', JSON.stringify(this.tasks));
+        localStorage.setItem('taskIdCounter', this.taskIdCounter);
         this.updateCounter();
     },
     loadTasks() {
-        this.tasks = [];
+        const savedTasks = localStorage.getItem('tasks');
+        this.tasks = savedTasks ? JSON.parse(savedTasks) : [];
+        this.taskIdCounter = localStorage.getItem('taskIdCounter') ? parseInt(localStorage.getItem('taskIdCounter')) : 0;
     },
     updateCounter() {
         const counter = document.getElementById('taskCounter');
