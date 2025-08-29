@@ -14,23 +14,17 @@
         </div>
 
         <div class="add-task-section">
-            <input 
-                type="text" 
-                class="task-input" 
-                id="taskInput" 
-                placeholder="What needs to be done today?"
-                autocomplete="off"
-            >
-            <button class="add-btn" id="addBtn">Add Task</button>
+            <input type="text" id="taskInput" class="task-input" placeholder="What needs to be done today?" autocomplete="off">
+            <button id="addBtn" class="add-btn">Add Task</button>
         </div>
 
-        <div class="task-list" id="taskList">
-            <div class="empty-state" id="emptyState">
+        <div id="taskList" class="task-list">
+            <div id="emptyState" class="empty-state">
                 <p>✨ No tasks yet! Add one above to get started.</p>
             </div>
         </div>
 
-        <div class="task-counter" id="taskCounter" style="display: none;">
+        <div id="taskCounter" class="task-counter" style="display: none;">
             Total: <span id="totalTasks">0</span> | 
             Pending: <span id="pendingTasks">0</span> | 
             In Progress: <span id="inProgressTasks">0</span> | 
