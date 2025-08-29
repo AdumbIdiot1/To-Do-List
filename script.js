@@ -13,7 +13,6 @@ const TaskManager = {
         const taskInput = document.getElementById('taskInput');
 
         addBtn.addEventListener('click', () => this.addTask());
-
         taskInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') this.addTask();
         });
@@ -45,15 +44,9 @@ const TaskManager = {
     },
 
     deleteTask(taskId) {
-        const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
-        if (taskElement) {
-            taskElement.classList.add('removing');
-            setTimeout(() => {
-                this.tasks = this.tasks.filter(task => task.id !== taskId);
-                this.saveTasks();
-                this.render();
-            }, 300);
-        }
+        this.tasks = this.tasks.filter(task => task.id !== taskId);
+        this.saveTasks();
+        this.render();
     },
 
     toggleTaskStatus(taskId) {
@@ -82,7 +75,6 @@ const TaskManager = {
             counter.style.display = 'none';
             return;
         }
-
         counter.style.display = 'block';
         document.getElementById('totalTasks').textContent = this.tasks.length;
         document.getElementById('pendingTasks').textContent = this.tasks.filter(t => t.status === 'pending').length;
@@ -92,16 +84,19 @@ const TaskManager = {
 
     render() {
         const taskList = document.getElementById('taskList');
-        const emptyState = document.getElementById('emptyState');
         taskList.innerHTML = '';
 
-        if (!this.tasks.length) {
+        if (this.tasks.length === 0) {
+            const emptyState = document.createElement('div');
+            emptyState.className = 'empty-state';
+            emptyState.textContent = '✨ No tasks yet! Add one above to get started.';
             taskList.appendChild(emptyState);
-        } else {
-            this.tasks.forEach(task => {
-                taskList.appendChild(this.createTaskElement(task));
-            });
+            return;
         }
+
+        this.tasks.forEach(task => {
+            taskList.appendChild(this.createTaskElement(task));
+        });
 
         this.updateCounter();
     },
